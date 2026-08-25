@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-25T18:01:49+08:00",
+  "updated_at": "2026-08-25T23:19:46+08:00",
   "timezone": "Asia/Kuala_Lumpur",
   "files": [
     ".gitignore",
@@ -20,6 +20,7 @@
     "blog/posts/koko-in-malaysia/banner.webp",
     "blog/posts/road-to-medicine/banner.jpg",
     "blog/posts/road-to-medicine/banner.webp",
+    "content/posts/testing-from-cms.md",
     "lookup.html",
     "robots.txt",
     "vercel.json"
