@@ -41,6 +41,8 @@ jobs:
           python3 - <<'PY'
           import json
           import os
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
 
           ignored = {
               ".git",
@@ -54,10 +56,7 @@ jobs:
           files = []
 
           for root, dirs, filenames in os.walk("."):
-              dirs[:] = [
-                  d for d in dirs
-                  if d not in ignored
-              ]
+              dirs[:] = [d for d in dirs if d not in ignored]
 
               for filename in filenames:
                   if filename in ignored:
@@ -65,27 +64,22 @@ jobs:
 
                   path = os.path.join(root, filename)
                   path = path.replace("./", "").replace("\\", "/")
-
                   files.append(path)
 
           files.sort()
 
+          updated_at = datetime.now(
+              ZoneInfo("Asia/Kuala_Lumpur")
+          ).isoformat(timespec="seconds")
+
+          manifest = {
+              "updated_at": updated_at,
+              "timezone": "Asia/Kuala_Lumpur",
+              "files": files
+          }
+
           with open("manifest.json", "w") as f:
-              json.dump(files, f, indent=2)
+              json.dump(manifest, f, indent=2)
 
-          print(f"Generated manifest with {len(files)} files.")
+          print(f"Updated: {updated_at}")
           PY
-
-      - name: Commit changes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add .
-
-          if git diff --cached --quiet; then
-            echo "No changes."
-          else
-            git commit -m "ci: process static assets"
-            git push
-          fi

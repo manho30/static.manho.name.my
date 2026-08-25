@@ -31,7 +31,7 @@
 <body>
 
 <h1>static.manho.name.my</h1>
-
+<div id="updated"></div>
 <div id="path"></div>
 <div id="files">Loading...</div>
 
@@ -41,6 +41,18 @@
         const response = await fetch("/manifest.json");
         const data = await response.json();
         files = Array.isArray(data) ? data : data.files;
+        if (data.updated_at) {
+            const date = new Date(data.updated_at);
+
+            document.getElementById("updated").textContent =
+                "Last updated: " +
+                date.toLocaleString("en-MY", {
+                    dateStyle: "medium",
+                    timeStyle: "medium"
+                });
+        } else {
+            document.getElementById("updated").textContent = "";
+        }
         render();
     }
 
