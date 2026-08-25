@@ -46,10 +46,7 @@
 
             document.getElementById("updated").textContent =
                 "Last updated: " +
-                date.toLocaleString("en-MY", {
-                    dateStyle: "medium",
-                    timeStyle: "medium"
-                });
+                date.toISOString().replace("T", " ").substring(0, 16);
         } else {
             document.getElementById("updated").textContent = "";
         }
