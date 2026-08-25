@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-25T17:37:53+08:00",
+  "updated_at": "2026-08-25T17:55:26+08:00",
   "timezone": "Asia/Kuala_Lumpur",
   "files": [
     ".gitignore",
@@ -7,6 +7,8 @@
     "blog/banner/landing/about.webp",
     "blog/banner/landing/archives.jpg",
     "blog/banner/landing/archives.webp",
+    "blog/banner/landing/categories.jpg",
+    "blog/banner/landing/categories.webp",
     "blog/banner/landing/index.jpg",
     "blog/banner/landing/index.webp",
     "blog/banner/landing/post.jpg",
