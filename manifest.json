@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-25T23:20:55+08:00",
+  "updated_at": "2026-08-25T23:43:30+08:00",
   "timezone": "Asia/Kuala_Lumpur",
   "files": [
     ".gitignore",
@@ -21,6 +21,8 @@
     "blog/posts/road-to-medicine/banner.jpg",
     "blog/posts/road-to-medicine/banner.webp",
     "lookup.html",
+    "public/images/photo_2024-11-01_00-29-24.jpg",
+    "public/images/photo_2024-11-01_00-29-24.webp",
     "robots.txt",
     "vercel.json"
   ]
