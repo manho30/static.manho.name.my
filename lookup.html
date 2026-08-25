@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>static.manho.name.my</title>
 
     <style>
@@ -13,15 +14,16 @@
         }
 
         a {
+            color: #06c;
             text-decoration: none;
         }
 
-        .file {
-            padding: 6px 0;
+        a:hover {
+            text-decoration: underline;
         }
 
-        .folder {
-            font-weight: bold;
+        .item {
+            padding: 6px 0;
         }
     </style>
 </head>
@@ -30,30 +32,99 @@
 
 <h1>static.manho.name.my</h1>
 
+<div id="path"></div>
 <div id="files">Loading...</div>
 
 <script>
-    fetch("/manifest.json")
-        .then(res => res.json())
-        .then(data => {
-            const container = document.getElementById("files");
+    let files = [];
+    async function loadManifest() {
+        const response = await fetch("/manifest.json");
+        const data = await response.json();
+        files = Array.isArray(data) ? data : data.files;
+        render();
+    }
 
-            data.files.forEach(file => {
-                const div = document.createElement("div");
-                div.className = "file";
+    function render() {
+        const path = location.hash.replace(/^#/, "").replace(/^\/+/, "");
+        const currentPath = path && !path.endsWith("/") ? path + "/" : path;
 
-                const link = document.createElement("a");
-                link.href = "/" + file;
-                link.textContent = file;
+        document.getElementById("path").innerHTML = `<p>/${currentPath}</p>`;
 
-                div.appendChild(link);
-                container.appendChild(div);
-            });
-        })
-        .catch(() => {
-            document.getElementById("files").textContent =
-                "Unable to load file list.";
+        const folders = new Set();
+        const currentFiles = [];
+
+        files.forEach(file => {
+            if (!file.startsWith(currentPath)) return;
+            const remaining = file.slice(currentPath.length);
+            if (!remaining) return;
+            const parts = remaining.split("/");
+
+            if (parts.length > 1) {
+                folders.add(parts[0]);
+            } else {
+                currentFiles.push(file);
+            }
         });
+
+        const container = document.getElementById("files");
+        container.innerHTML = "";
+        if (currentPath) {
+            const back = document.createElement("div");
+            back.className = "item";
+            const parent = currentPath.split("/").slice(0, -2).join("/");
+            back.innerHTML =  `⬅️ <a href="#/${parent ? parent + "/" : ""}">..</a>`;
+            container.appendChild(back);
+        }
+        [...folders].sort().forEach(folder => {
+            const div = document.createElement("div");
+            div.className = "item";
+            div.innerHTML = `📁 <a href="#/${currentPath}${folder}/">${folder}/</a>`;
+            container.appendChild(div);
+        });
+
+        currentFiles.sort().forEach(file => {
+            const div = document.createElement("div");
+            div.className = "item";
+
+            const url = "https://static.manho.name.my/" + file;
+            const name = file.split("/").pop();
+
+            div.innerHTML = `
+    📄 <a href="/${file}" target="_blank">${name}</a>
+    <br>
+    <small>
+      ${url}
+      <a href="#" class="copy-link">[copy]</a>
+    </small>
+  `;
+
+            div.querySelector(".copy-link").onclick = (e) => {
+                e.preventDefault();
+
+                navigator.clipboard.writeText(url);
+
+                e.target.textContent = "[copied]";
+
+                setTimeout(() => {
+                    e.target.textContent = "[copy]";
+                }, 1000);
+            };
+
+            container.appendChild(div);
+        });
+
+        if (!folders.size && !currentFiles.length) {
+            container.textContent = "Empty directory.";
+        }
+    }
+
+    window.addEventListener("hashchange", render);
+
+    loadManifest().catch(error => {
+        console.error(error);
+        document.getElementById("files").textContent =
+            "Unable to load file list.";
+    });
 </script>
 
 </body>
