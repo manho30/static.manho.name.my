@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-30T15:44:16+08:00",
+  "updated_at": "2026-08-30T15:47:02+08:00",
   "timezone": "Asia/Kuala_Lumpur",
   "files": [
     ".gitignore",
@@ -20,8 +20,8 @@
     "blog/posts/beyond-act174/landing.webp",
     "blog/posts/koko-in-malaysia/banner.jpg",
     "blog/posts/koko-in-malaysia/banner.webp",
-    "blog/posts/road-to-medicine/banner.jpg",
-    "blog/posts/road-to-medicine/banner.webp",
+    "blog/posts/road-to-medicine-1/banner.jpg",
+    "blog/posts/road-to-medicine-1/banner.webp",
     "lookup.html",
     "robots.txt",
     "vercel.json"
