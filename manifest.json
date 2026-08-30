@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-26T11:15:39+08:00",
+  "updated_at": "2026-08-30T14:28:18+08:00",
   "timezone": "Asia/Kuala_Lumpur",
   "files": [
     ".gitignore",
@@ -16,6 +16,8 @@
     "blog/banner/landing/tags.jpg",
     "blog/banner/landing/tags.webp",
     "blog/favicon/favicon.ico",
+    "blog/posts/beyond-act174/landing.jpg",
+    "blog/posts/beyond-act174/landing.webp",
     "blog/posts/koko-in-malaysia/banner.jpg",
     "blog/posts/koko-in-malaysia/banner.webp",
     "blog/posts/road-to-medicine/banner.jpg",
