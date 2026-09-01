@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-01T20:25:52+08:00",
+  "updated_at": "2026-09-01T20:32:48+08:00",
   "timezone": "Asia/Kuala_Lumpur",
   "files": [
     ".gitignore",
@@ -22,6 +22,8 @@
     "blog/posts/koko-in-malaysia/banner.webp",
     "blog/posts/road-to-medicine-1/banner.jpg",
     "blog/posts/road-to-medicine-1/banner.webp",
+    "blog/posts/road-to-medicine-1/matrik-offer.png",
+    "blog/posts/road-to-medicine-1/matrik-offer.webp",
     "blog/posts/road-to-medicine-1/spm-result-v1.png",
     "blog/posts/road-to-medicine-1/spm-result-v1.webp",
     "lookup.html",
